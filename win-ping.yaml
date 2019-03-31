@@ -1,7 +1,6 @@
 ---
-- hosts: all
-  #become: yes
-  #become_method: sudo
+- name: ping win machines
+  hosts: all
   tasks:
-    - name: Ping all systems
-      win-ping: 
+    - name: ping win machines
+      win_ping:
