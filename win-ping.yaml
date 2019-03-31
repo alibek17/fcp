@@ -1,8 +1,6 @@
 ---
 - name: ping win machines
   hosts: all
-  #ansible_port: 5985
-  ansible_connection: winrm
   tasks:
     - name: ping win machines
       win_ping:
