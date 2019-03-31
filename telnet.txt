@@ -5,5 +5,5 @@
   tasks:
     - name: install the latest version of tlnet
       yum:
-        name: httpd
+        name: telnet
         state: latest
