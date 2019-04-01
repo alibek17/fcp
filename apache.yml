@@ -1,6 +1,5 @@
 ---
 - name: Install Apache WebServer
-  when: ansible_distribution == "Ubuntu"
   hosts: all
   become: yes
   become_method: sudo
