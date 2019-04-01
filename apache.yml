@@ -1,6 +1,8 @@
 ---
 - name: Install Apache WebServer
   hosts: all
+  tags:
+    - linux
   become: yes
   become_method: sudo
   tasks: 
