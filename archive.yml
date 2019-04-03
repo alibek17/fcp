@@ -1,17 +1,21 @@
+# Please specify the following variables when prompted while launching the template   
+# source_folder: search for the files inside this folder, absolute path
+# dest_folder: destination folder for the archive to be saved
+# days: number of days
 ---
-- name: create a compressed archive of files that are older than 90 days
+- name: create a compressed archive of files in a specific folder that are older than the given number of days and save it inside a given folder
   hosts: all
   become: yes
   become_method: sudo
   tasks:
-    - name: find files older than 90 days
+    - name: find files older than given days
       find:
-        paths: /tmp
-        age: 90d
+        paths: "{{source_folder}}"
+        age: "{{days}}"
         recurse: yes
       register: found
     - name: create a compressed archive of files found above
       archive:
         path: "{{found.files|map(attribute='path')|list}}"
         format: gz
-        dest: "/tmp/file{{ansible_date_time.date}}.over90days.tgz"
+        dest: "{{dest_folder}}/{{days}}.tgz"
