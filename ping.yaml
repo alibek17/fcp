@@ -1,7 +1,7 @@
 ---
-- hosts: "{{host}}"
+- name: ping the user specified hosts
+  hosts: "{{host}}"
   become: yes
   become_method: sudo
   tasks:
-    - name: Ping all systems
       ping: 

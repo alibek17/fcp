@@ -1,0 +1,10 @@
+- name: Manage the user specicfied package 
+  hosts: all
+  become: yes
+  become_method: sudo
+  tasks: 
+    - name: install or delete the given package
+      package:
+        name: "{{name}}"
+        state: "{{state}}"
+      when: (ansible_distribution == "{{distribution}}" and ansible_distribution_major_version == "{{majorversion}}")
