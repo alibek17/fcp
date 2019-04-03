@@ -5,6 +5,6 @@
   tasks: 
     - name: install or delete the given package
       package:
-        name: "{{name}}"
+        name: "{{package}}"
         state: "{{state}}"
-      when: (ansible_distribution == distribution|string and ansible_distribution_major_version == majorversion|int)
+      when: (ansible_distribution == distribution|string and ansible_distribution_major_version == majorversion|string)
