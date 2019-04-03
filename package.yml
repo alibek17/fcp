@@ -1,3 +1,9 @@
+# Please specify the following variables when prompted while launching the template   
+# distribution: Ubuntu | Debian | CentOS | etc
+# majorversion: 16 | 9 | 7 | etc
+# package: any package name
+# state: prent | absent
+---
 - name: Manage the user specicfied package 
   hosts: all
   become: yes
