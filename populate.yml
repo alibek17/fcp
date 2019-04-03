@@ -5,6 +5,6 @@
   become_method: sudo
   tasks:
     - name: create a file that is larger than 80mb
-      shell: dd if=/dev/urandom of=/tmp/file.txt bs=22M count=4
+      shell: dd if=/dev/urandom of=/tmp/file.txt bs=22000000 count=4
     - name: create five files with a custom date
       shell: touch -d 20180501  /tmp/file{1..5}
