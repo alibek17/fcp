@@ -7,4 +7,4 @@
       package:
         name: "{{name}}"
         state: "{{state}}"
-      when: (ansible_distribution == distribution and ansible_distribution_major_version == majorversion)
+      when: (ansible_distribution == distribution|string and ansible_distribution_major_version == majorversion|string)
