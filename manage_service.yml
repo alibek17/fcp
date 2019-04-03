@@ -8,6 +8,6 @@
   become_method: sudo
   tasks: 
     - name: set the state of the service
-      package:
+      systemd:
         name: "{{service}}"
         state: "{{state}}"
