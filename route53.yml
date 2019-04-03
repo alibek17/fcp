@@ -7,9 +7,7 @@
 # value: The new value when creating a DNS record
 ---
 - name: add or delete entries in Amazons Route53 DNS service
-  hosts: all
-  become: yes
-  become_method: sudo
+  hosts: localhost
   tasks: 
     - name: add or delete entries in Amazons Route53 DNS service
       route53:
