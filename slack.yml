@@ -30,4 +30,4 @@
       when: update.stdout == ""
       slack:
         token: THQ1XJR54/BHDV0BYEM/iy8q2Vf2qsjRAcxrcLlZIwj3
-        msg: "No udates available"
+        msg: "No udates available for host {{inventory_hostname}}"
