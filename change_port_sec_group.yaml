@@ -1,10 +1,10 @@
 # Open port fo ssh connections, make appropriate changes to selinux, 
 # get the hosts security group on aws and add a rule that allows connections through that port
-# Tested on CentOS
+# check the connection and displays the message
+# Tested on CentOS. On Debian/Ubuntu may complain that necessary python libraries are not installed
 # Please specify the following variables when prompted while launching the template   
-# source_folder: search for the files inside this folder, absolute path
-# dest_folder: destination folder for the archive to be saved
-# size: size of files
+# host: ip address of the host 
+# port_num: port number that you want to open
 ---
 - name: change ssh port, edit security group
   hosts: "{{host}}"
@@ -34,9 +34,9 @@
 
     - name: add a rule to a security group, that allows a connection through a given port
       ec2_group:
-        name: ansible_ec2_security_groups
+        name: "{{ansible_ec2_security_groups}}"
         description: awx_host
-        region: ansible_ec2_placement_region
+        region: "{{ansible_ec2_placement_region}}"
         purge_rules: false
         rules:
           - proto: tcp
