@@ -1,3 +1,10 @@
+# Open port fo ssh connections, make appropriate changes to selinux, 
+# get the hosts security group on aws and add a rule that allows connections through that port
+# Tested on CentOS
+# Please specify the following variables when prompted while launching the template   
+# source_folder: search for the files inside this folder, absolute path
+# dest_folder: destination folder for the archive to be saved
+# size: size of files
 ---
 - name: change ssh port, edit security group
   hosts: "{{host}}"
@@ -21,24 +28,15 @@
       systemd:
         name: sshd
         state: restarted
-
-    - name: get the hosts security group
-      ec2_instance_facts:
-        region: eu-west-1
-      delegate_to: localhost
-      register: segroup
-
-    - set_fact:
-        #ip="{{item.private_ip_address}}"
-        sg="{{item.security_groups[0].group_name}}"
-      when: item.private_ip_address == ansible_default_ipv4.address
-      with_items: "{{segroup.instances}}"
+    
+    - name: Gathers facts (instance metadata) about remote hosts within ec2
+      ec2_metadata_facts:
 
     - name: add a rule to a security group, that allows a connection through a given port
       ec2_group:
-        name: "{{sg}}"
+        name: ansible_ec2_security_groups
         description: awx_host
-        region: eu-west-1
+        region: ansible_ec2_placement_region
         purge_rules: false
         rules:
           - proto: tcp
