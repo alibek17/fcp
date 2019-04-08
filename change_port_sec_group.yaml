@@ -1,7 +1,7 @@
 # Open port fo ssh connections, make appropriate changes to selinux, 
 # get the hosts security group on aws and add a rule that allows connections through that port
 # check the connection and displays the message
-# Tested on CentOS. On Debian/Ubuntu may complain that necessary python libraries are not installed
+# Tested on CentOS, Ubuntu. On Debian may complain that necessary python libraries are not installed
 # Please specify the following variables when prompted while launching the template   
 # host: ip address of the host 
 # port_num: port number that you want to open
