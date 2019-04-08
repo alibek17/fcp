@@ -23,6 +23,7 @@
         proto: tcp
         setype: ssh_port_t
         state: present
+      ignore_errors: yes
 
     - name: restart sshd
       systemd:
