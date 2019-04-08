@@ -50,10 +50,10 @@
     
     - name: check if port is open
       wait_for:
-        host: "{host{}}"
+        host: "{{host}}"
         port: "{{port}}"
         delay: 5
-        timeout: 10
+        timeout: 15
         msg: "Timeout waiting for ssh connection on a given port"
       ignore_errors: yes
       register: port_check
