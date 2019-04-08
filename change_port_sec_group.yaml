@@ -7,12 +7,12 @@
         path: /etc/ssh/sshd_config
         line: "{{item}}"
       with_items:
-        - "Port {{port}}"
+        - "Port {{port_num}}"
         - "Port 22"
 
     - name: allow sshd to listen on given tcp port
       seport:
-        ports: "{{port}}"
+        ports: "{{port_num}}"
         proto: tcp
         setype: ssh_port_t
         state: present
@@ -43,7 +43,7 @@
         rules:
           - proto: tcp
             ports:
-              - "{{port}}"
+              - "{{port_num}}"
             cidr_ip: 0.0.0.0/0
             rule_desc: allow all tcp on port 
       delegate_to: localhost 
@@ -51,7 +51,7 @@
     - name: check if port is open
       wait_for:
         host: "{{host}}"
-        port: "{{port}}"
+        port: "{{port_num}}"
         delay: 5
         timeout: 15
         msg: "Timeout waiting for ssh connection on a given port"
